@@ -28,7 +28,7 @@ query_string <- "SELECT count(*) FROM surveys"
 result <-dbGetQuery(conn,query_string)
 head(result)
 
-year<- 1990
+
 # write a query that gets the non-null weights for 
 # all species in this year
 query_string <- paste("SELECT species_id, weight FROM surveys WHERE weight IS NOT NULL AND year=", year)
