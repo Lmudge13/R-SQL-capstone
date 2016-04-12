@@ -28,13 +28,14 @@ query_string <- "SELECT count(*) FROM surveys"
 result <-dbGetQuery(conn,query_string)
 head(result)
 
+year<- 1990
 # write a query that gets the non-null weights for 
 # all species in this year
-query_string <- ""
+query_string <- paste("SELECT species_id, weight FROM surveys WHERE weight IS NOT NULL AND year=", year)
 result <- dbGetQuery(conn,query_string)
 head(result)
 
 # plot the data and save to a png file
-ggplot()
-outputfilename <- ".png"
+ggplot(result, aes(x=species_id, y=weight)) + geom_boxplot()
+outputfilename <- paste(year,".png")
 ggsave(outputfilename)
